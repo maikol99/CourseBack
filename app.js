@@ -23,6 +23,7 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/todo", todoRouter);
 
 // http://localhost:8000/api/v1/user/
+// http://localhost:8000/api/v1/todo/
 
 
 const PORT = process.env.PORT || 3000;
