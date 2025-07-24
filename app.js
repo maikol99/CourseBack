@@ -5,6 +5,7 @@ import { connect } from 'mongoose';
 import connectDB from './db/database.js';
 import userRouter from "./routes/user.js";
 import todoRouter from "./routes/todo.js";
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
@@ -18,9 +19,12 @@ app.use(express.json());
 
 //parsea datos enviados como si fueran de un formulario HTML tradicional
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(cookieParser());
+
 
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/todo", todoRouter);
+
 
 // http://localhost:8000/api/v1/user/
 // http://localhost:8000/api/v1/todo/

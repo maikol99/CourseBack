@@ -1,6 +1,7 @@
 import { User } from "../models/user.js";
 //biblioteca para encriptar (hashear) contraseñas, muy importante por seguridad.
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
   try {
@@ -66,11 +67,34 @@ export const login = async (req, res) => {
       });
     }
 
-    return res.status(200).json({
+    const token = await jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
+      expiresIn: "1d",
+    });
+
+    return res
+      .status(200)
+      .cookie("token", token, {
+        httpOnly: true,
+        sameSite: "strict",
+        maxAge: 24 * 60 * 60 * 1000,
+      })
+      .json({
         success: true,
-        message: `Bienvenido a ${user.fullName}`
-    })
+        message: `Bienvenido a ${user.fullName}`,
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+export const logout = async (_,res) =>{
+  try {
+    return res.status(200).cookie("token", "", {maxAge:0}).json({
+      success:true,
+      message:"Usuario logeado Exitosamente"
+    });
   } catch (error) {
     console.log(error)
   }
-};
+}
