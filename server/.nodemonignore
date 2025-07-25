@@ -1,0 +1,26 @@
+# Ignora dependencias
+node_modules
+
+# Ignora archivos de entorno
+.env
+
+# Ignora archivos de log
+*.log
+
+# Ignora archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Ignora configuración de editores
+.vscode
+.idea
+
+# Ignora archivos compilados o temporales
+dist
+build
+tmp
+
+
+# Agregá esto también:
+db/database.js
+models/*
