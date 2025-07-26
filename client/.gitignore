@@ -6,11 +6,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-node_modules/
-dist/
-.vite/
-.vite-temp/
-.env
 
 node_modules
 dist
